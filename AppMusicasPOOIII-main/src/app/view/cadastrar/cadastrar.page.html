@@ -1,0 +1,49 @@
+<ion-header class="no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start"> 
+      <ion-back-button defaultHref="./view/home" text=""></ion-back-button>
+    </ion-buttons> 
+    <ion-title>CADASTRO MÚSICA</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="custom-content">
+    <ion-item>
+      <ion-input label="Nome" placeholder="Nome" [(ngModel)]="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Banda" placeholder="Banda/Cantor" [(ngModel)]="banda"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Ano de Lançamento" placeholder="Ano de Lançamento" type="number" [(ngModel)]="anoLancamento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <!--<ion-datetime presentation="month-year"></ion-datetime>-->
+      <ion-input label="Álbum" placeholder="Álbum" [(ngModel)]="album"></ion-input>
+    </ion-item>
+      <ion-item>
+        <ion-select aria-label="Genero" interface="popover" placeholder="Gênero" [(ngModel)]="genero">
+          <ion-select-option value="Sertanejo">Sertanejo</ion-select-option>
+          <ion-select-option value="Pop-Rock">Pop-Rock</ion-select-option>
+          <ion-select-option value="Hip-hop">Hip-hop</ion-select-option>
+          <ion-select-option value="Pagode">Pagode</ion-select-option>
+          <ion-select-option value="Funk">Funk</ion-select-option>
+          <ion-select-option value="Dance/eletrônica">Dance/eletrônica</ion-select-option>
+          <ion-select-option value="Rock">Rock</ion-select-option>
+          <ion-select-option value="Jazz">Jazz</ion-select-option>
+          <ion-select-option value="Blues">Blues</ion-select-option>
+          <ion-select-option value="Country">Country</ion-select-option>
+          <ion-select-option value="Pop">Pop</ion-select-option>
+          <ion-select-option value="Clássica">Clássica</ion-select-option>
+          <ion-select-option value="Reggae">Reggae</ion-select-option>
+          <ion-select-option value="Bossa Nova">Bossa Nova</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-button size="default" color="#ffffff;" shape="round" class="custom-file-button">
+        <input type="file" (change)="uploadFile($event.target)" class="custom-file-input"/>
+        Escolher arquivo
+      </ion-button>
+
+    <ion-button expand="block" (click)="cadastrar()" style="margin-top: 150px;">Cadastrar</ion-button>
+</ion-content>

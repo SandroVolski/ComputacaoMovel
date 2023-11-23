@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <!--
+    <ion-avatar slot="start">
+      <ion-img src="assets/icon/HarmoniApp.png" style="width: 70px; height: 50px;"></ion-img>
+    </ion-avatar>
+    -->
+
+    <ion-title>
+      <ion-icon name="musical-note-outline"></ion-icon> PLAYLIST <ion-icon name="musical-note-outline"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="custom-content">
+  <ion-list style="background: transparent; max-height: 545px; overflow-y: auto;" >
+    <div class="max-height-list"></div>
+    <ion-item *ngFor="let musica of lista_musicas; let i = index" (click)="editar(musica)" class="item-musica" lines="none">
+      <div class="item-count" style="margin-right: 15px; font-size: 15px; font-weight: bold; color: #ffffff;" >{{ i + 1 }} </div>
+      <img *ngIf="musica.downloadURL != null" src="{{musica.downloadURL}}" class="imagem-musica" style="margin-right: 15px;" />
+      <img *ngIf="musica.downloadURL == null" src="assets/avatar2.png" class="imagem-musica" style="margin-right: 15px;" />
+      <div class="scrolling-container">
+        <div [ngClass]="{'scrolling-content': musica.nome.length > 23 || musica.banda.length > 39}">
+          <h2>{{musica.nome}}</h2>
+          <p>{{musica.banda}}</p>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab horizontal="center" vertical="bottom">
+    <ion-fab-button horizontal="center" vertical="bottom" (click)="irParaCadastrar()" class="meu-botao">
+      ADICIONAR
+    </ion-fab-button>
+ </ion-fab>
+</ion-content>
