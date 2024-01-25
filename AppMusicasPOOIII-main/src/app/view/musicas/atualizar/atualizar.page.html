@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="custom-content">
+<ion-content class="custom-content" >
   <ion-item>
     <ion-toggle (ionChange)="habilitar()">Habilitar Edição</ion-toggle>
   </ion-item>
@@ -44,9 +44,10 @@
 
     <ion-item *ngIf="musica.downloadURL != null" class="custom-image">
       <div class="center-container">
-        <img src="{{musica.downloadURL}}" class="custom-image" />
+        <img src="{{musica.downloadURL}}" class="custom-image" style="width: 100px; height: 100px;" />
       </div>
     </ion-item>
+    
     
     <ion-button size="default" color="#ffffff;" shape="round" [class.custom-file-button]="musica.downloadURL != null" [class.custom-file-button-semImagem]="musica.downloadURL == null" disabled="{{edicao}}">
       <input type="file" (change)="uploadFile($event.target)" class="custom-file-input"/>

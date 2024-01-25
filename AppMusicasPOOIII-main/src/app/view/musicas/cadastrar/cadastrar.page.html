@@ -42,8 +42,13 @@
 
       <ion-button size="default" color="#ffffff;" shape="round" class="custom-file-button">
         <input type="file" (change)="uploadFile($event.target)" class="custom-file-input"/>
-        Escolher arquivo
+        Escolher Imagem
       </ion-button>
 
-    <ion-button expand="block" (click)="cadastrar()" style="margin-top: 150px;">Cadastrar</ion-button>
+      <ion-button size="default" color="#ffffff;" shape="round" class="custom-file-button">
+        <input type="file" (change)="uploadSound($event.target)" class="custom-file-input"/>
+          Escolher Áudio
+      </ion-button>
+
+    <ion-button expand="block" (click)="cadastrar()" style="margin-top: 100px;">Cadastrar</ion-button>
 </ion-content>

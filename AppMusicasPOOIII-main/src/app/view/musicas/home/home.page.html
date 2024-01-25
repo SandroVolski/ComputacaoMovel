@@ -6,6 +6,10 @@
     </ion-avatar>
     -->
 
+    <ion-button (click)="logout()" class="logout" color="">
+      <ion-icon name="exit-outline"></ion-icon>
+    </ion-button>
+
     <ion-title>
       <ion-icon name="musical-note-outline"></ion-icon> PLAYLIST <ion-icon name="musical-note-outline"></ion-icon>
     </ion-title>
@@ -13,13 +17,15 @@
 </ion-header>
 
 <ion-content class="custom-content">
-  <ion-list style="background: transparent; max-height: 545px; overflow-y: auto;" >
+  <ion-list style="background: transparent; max-height: 480px; overflow-y: auto;" >
     <div class="max-height-list"></div>
-    <ion-item *ngFor="let musica of lista_musicas; let i = index" (click)="editar(musica)" class="item-musica" lines="none">
+    <ion-item *ngFor="let musica of lista_musicas; let i = index" class="item-musica" lines="none">
       <div class="item-count" style="margin-right: 15px; font-size: 15px; font-weight: bold; color: #ffffff;" >{{ i + 1 }} </div>
-      <img *ngIf="musica.downloadURL != null" src="{{musica.downloadURL}}" class="imagem-musica" style="margin-right: 15px;" />
-      <img *ngIf="musica.downloadURL == null" src="assets/avatar2.png" class="imagem-musica" style="margin-right: 15px;" />
-      <div class="scrolling-container">
+      <img *ngIf="musica.downloadURL != null" src="{{musica.downloadURL}}" class="imagem-musica" style="margin-right: 15px;" (click)="reproduzirAudio(musica)"/>
+      <img src="assets/Play2.png" class="play-icon" [ngClass]="{'hidden': !isPlaying || currentMusica !== musica}" (click)="togglePlay(musica)" />
+      <img *ngIf="musica.downloadURL == null" src="assets/avatar2.png" class="imagem-musica" style="margin-right: 15px;" (click)="reproduzirAudio(musica)"/>
+      <img src="assets/Play2.png" class="play-icon" [ngClass]="{'hidden': !isPlaying || currentMusica !== musica}" (click)="togglePlay(musica)" />
+      <div class="scrolling-container" (click)="editar(musica)">
         <div [ngClass]="{'scrolling-content': musica.nome.length > 23 || musica.banda.length > 39}">
           <h2>{{musica.nome}}</h2>
           <p>{{musica.banda}}</p>

@@ -4,6 +4,8 @@ import Musica from 'src/app/model/entities/Musica';
 import { FirebaseService } from 'src/app/model/service/firebase.service';
 import { MusicaService } from 'src/app/model/service/musica.service';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from 'src/app/model/service/auth.service';
+import { AlertService } from 'src/app/common/alert.service';
 
 @Component({
   selector: 'app-atualizar',
@@ -20,11 +22,13 @@ export class AtualizarPage implements OnInit {
   indice!: number;
   edicao: boolean = true;
   public imagem : any;
+  public som : any;
+  public user: any;
 
 
-  constructor (private alertController: AlertController,
-    private router: Router,
-    private firebase: FirebaseService) { }
+  constructor (private alert : AlertService, private alertController: AlertController, private router: Router, private firebase: FirebaseService, private auth: AuthService) {
+    this.user = this.auth.getUserLogged();
+  }
 
   ngOnInit() {
     this.musica = history.state.musica;
@@ -47,16 +51,22 @@ export class AtualizarPage implements OnInit {
     this.imagem = imagem.files;
   }
 
+  public uploadSound(som : any) {
+    this.som = som.files;
+  }
 
   editar(){
     let novo: Musica = new Musica(this.nome, this.banda, this.anoLancamento, this.genero, this.album);
     novo.id = this.musica.id;
+    novo.uid = this.user.uid;
     if(this.imagem){
       this.firebase.uploadImage(this.imagem, novo);
-    }else{  
+    } else{  
+      novo.downloadURL = this.musica.downloadURL;
       this.firebase.update(novo, this.musica.id);
     }
-    this.router.navigate(["/home"]);
+    this.alert.simpleLoader();
+    this.router.navigate(["/home"]);  
   }
 
   excluir(){

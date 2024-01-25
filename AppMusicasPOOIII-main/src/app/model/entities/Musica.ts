@@ -6,6 +6,8 @@ export default class Musica{
     private _genero : string;
     private _album : string;
 	private _downloadURL: any;
+	private _downloadMusica: any;
+	private _uid: string;
 
     constructor(nome: string, banda: string, anoLancamento: number, genero: string, album: string){
         this._nome = nome;
@@ -62,5 +64,19 @@ export default class Musica{
 	}
 	public set downloadURL(value: any) {
 		this._downloadURL = value;
+	}
+
+	public get downloadMusica(): any {
+		return this._downloadMusica;
+	}
+	public set downloadMusica(value: any) {
+		this._downloadMusica = value;
+	}
+
+	public get uid(): string {
+	return this._uid;
+	}
+	public set uid(value: string) {
+	this._uid = value;
 	}
 }

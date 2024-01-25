@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import Musica from '../entities/Musica';
+import { FirebaseService } from './firebase.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MusicaService {
   public lista_musicas : Musica[] = [];
+  private audio: HTMLAudioElement = new Audio();
 
-  constructor() {
+  constructor(private firebaseService: FirebaseService) {
   }
 
   cadastrar(Musica : Musica){
@@ -30,5 +32,15 @@ export class MusicaService {
     this.lista_musicas.splice(indice, 1);
   }
 
+  playAudio(musica: Musica) {
+    this.firebaseService.getAudioURL(musica.downloadMusica).subscribe(url => {
+      this.audio.src = url;
+      this.audio.play();
+    });
+  }
+
+  pauseAudio() {
+    this.audio.pause();
+  }
 
 }

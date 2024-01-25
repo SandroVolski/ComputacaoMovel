@@ -162,3 +162,56 @@ div.item-native {
   z-index: 9999;
 }
 
+.imagem-musica {
+  position: relative;
+ }
+ 
+ .play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+ }
+ 
+ app-audio-player {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+ }
+
+ .audio-player {
+  margin-top: 10px; /* Ajuste a margem superior conforme necessário */
+  display: block; /* Isso garante que o elemento seja exibido como bloco, ocupando toda a largura disponível */
+  margin-left: auto; /* Isso centraliza o elemento horizontalmente */
+  margin-right: auto;
+}
+
+.logout {
+  font-size: 14px; /* Ajuste o tamanho do texto do botão conforme necessário */
+  --background: #000000; /* Define a cor de fundo do botão como preto */
+  --color: #ffffff; /* Define a cor do texto do botão como branco */
+}
+
+.logout:active {
+  --background: #ffffff; /* Define a cor de fundo do botão como branco ao ser clicado */
+  --color: #000000; /* Define a cor do texto do botão como preto ao ser clicado */
+}
+ 
+ /* styles.css ou styles.scss */
+.play-icon {
+  
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  opacity: 90%;
+}
+
+.hidden {
+  display: none;
+}
+ 

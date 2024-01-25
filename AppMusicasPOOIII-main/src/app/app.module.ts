@@ -12,14 +12,20 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+//import { AppAudioPlayerComponent } from './app-audio-player/app-audio-player.component';
+//import { HomePage } from './view/musicas/home/home.page';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule,
+    //HomePage,
+    //AppAudioPlayerComponent,
      AngularFireModule.initializeApp(environment.firebaseConfig),
      AngularFireDatabaseModule,
      AngularFirestoreModule,
      AngularFireStorageModule,
+     AngularFireAuthModule,
      IonicModule.forRoot(),
       AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
