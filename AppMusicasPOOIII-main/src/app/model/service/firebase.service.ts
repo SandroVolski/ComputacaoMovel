@@ -82,7 +82,7 @@ export class FirebaseService {
           }
         })
        })).subscribe();
-
+       
   }
 
   uploadImageWithSound(imagem: any, som: any, musica: Musica) {

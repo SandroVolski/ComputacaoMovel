@@ -69,10 +69,10 @@
   }
   
   ion-button {
-    border-radius: 100%; /* Torna os botões círculos */
+    border-radius: 100%; 
     width: 50px;
     height: 50px;
-    margin: 10px; /* Espaçamento entre os botões */
+    margin: 10px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -90,13 +90,13 @@
   ion-list {
     flex-grow: 1;
     width: 100%;
-    max-width: 500px; /* Defina uma largura máxima para o formulário */
-    margin-top: 10px; /* Espaçamento do topo */
+    max-width: 500px;
+    margin-top: 10px;
     padding: 0 15px;
   }
   
   ion-back-button {
-    color: #ffffff;  /* Cor do ícone de voltar */
+    color: #ffffff;  
   }
 
   .custom-file-button {
@@ -105,8 +105,8 @@
     --border-radius: 30px;
     flex-grow: 1;
     width: 100%;
-    max-width: 200px; /* Defina uma largura máxima para o formulário */
-    margin-top: 10px; /* Espaçamento do topo */
+    max-width: 200px; 
+    margin-top: 10px; 
     padding: 0 20px;
     transform: translateX(80px);
 
@@ -114,18 +114,18 @@
     border-radius: 50px !important;
     position: relative;
     z-index: 1;
-    max-width: 165px; /* Defina uma largura máxima para o botão */
-    display: block; /* Certifique-se de que o botão ocupa a largura total do contêiner */
+    max-width: 165px; 
+    display: block;
 
-    /* Centralizar horizontalmente */
+    
     margin-left: 20px;
   
 
-    /* Centralizar verticalmente (para botões de bloco) */
+    
     margin-top: auto;
     margin-bottom: auto;
 
-    /* OU: Centralizar verticalmente (para botões inline) */
+    
     vertical-align: middle;
   }
 
@@ -167,15 +167,15 @@
   .custom-file-button-google ion-icon,
   .custom-file-button-github ion-icon,
   .custom-file-button-facebook ion-icon {
-    color: #ffffff; /* ou a cor desejada para os ícones */
+    color: #ffffff; 
     font-size: 30px;
     transform: translateX(-7px)
   }
 
   a {
-    display: block; /* Para garantir que a largura do texto seja 100% do contêiner */
-    margin: 0 auto; /* Configurar margens automáticas para centralizar o elemento */
-    text-align: center; /* Centralizar o texto (opcional, mas pode ser útil dependendo do contexto) */
+    display: block; 
+    margin: 0 auto; 
+    text-align: center; 
     color: white;
     margin-top: 40px;
   }
@@ -195,19 +195,19 @@
     --background: transparent !important;
     max-height: 100px; 
     max-width: 100%;
-    display: block; /* Impede que a imagem crie margens adicionais */
+    display: block; 
     margin: 0 auto;
     left: 15px;
   }
   
   .custom-content {
-    --background: transparent; /* Torna o plano de fundo transparente */
+    --background: transparent; 
     position: absolute;
     top: 40px;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1; /* Certifique-se de que está por trás do conteúdo do ion-content */
+    z-index: 1; 
   }
   
   span{

@@ -8,52 +8,64 @@
 </ion-header>
 
 <ion-content class="custom-content" >
+
   <ion-item>
     <ion-toggle (ionChange)="habilitar()">Habilitar Edição</ion-toggle>
   </ion-item>
-  <ion-item>
-    <ion-input label="Nome" placeholder="Nome da música" [(ngModel)]="nome" disabled="{{edicao}}"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input label="Banda" placeholder="Banda" [(ngModel)]="banda" disabled="{{edicao}}"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input label="Ano de Lançamento" placeholder="Ano de Lançamento" [(ngModel)]="anoLancamento" disabled="{{edicao}}"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input label="Álbum" placeholder="Álbum" [(ngModel)]="album" disabled=true></ion-input>
-  </ion-item>
-    <ion-item>
-      <ion-select aria-label="Genero" interface="popover" placeholder="Gênero" [(ngModel)]="genero" disabled=true>
-        <ion-select-option value="Sertanejo">Sertanejo</ion-select-option>
-        <ion-select-option value="Pop-Rock">Pop-Rock</ion-select-option>
-        <ion-select-option value="Hip-hop">Hip-hop</ion-select-option>
-        <ion-select-option value="Pagode">Pagode</ion-select-option>
-        <ion-select-option value="Funk">Funk</ion-select-option>
-        <ion-select-option value="Dance/eletrônica">Dance/eletrônica</ion-select-option>
-        <ion-select-option value="Rock">Rock</ion-select-option>
-        <ion-select-option value="Jazz">Jazz</ion-select-option>
-        <ion-select-option value="Blues">Blues</ion-select-option>
-        <ion-select-option value="Country">Country</ion-select-option>
-        <ion-select-option value="Pop">Pop</ion-select-option>
-        <ion-select-option value="Clássica">Clássica</ion-select-option>
-        <ion-select-option value="Reggae">Reggae</ion-select-option>
-        <ion-select-option value="Bossa Nova">Bossa Nova</ion-select-option>
-      </ion-select>
-    </ion-item>
 
-    <ion-item *ngIf="musica.downloadURL != null" class="custom-image">
-      <div class="center-container">
-        <img src="{{musica.downloadURL}}" class="custom-image" style="width: 100px; height: 100px;" />
-      </div>
+  <form [formGroup]="formEditar" (ngSubmit)="submitForm()">
+
+    <ion-item>
+      <ion-input label="Nome" placeholder="Nome da música" formControlName="nome" [disabled]="edicao"></ion-input>
     </ion-item>
-    
-    
-    <ion-button size="default" color="#ffffff;" shape="round" [class.custom-file-button]="musica.downloadURL != null" [class.custom-file-button-semImagem]="musica.downloadURL == null" disabled="{{edicao}}">
-      <input type="file" (change)="uploadFile($event.target)" class="custom-file-input"/>
-      Escolher arquivo
-    </ion-button>
-    
+    <ion-item>
+      <ion-input label="Banda" placeholder="Banda" formControlName="banda" [disabled]="edicao"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Ano de Lançamento" placeholder="Ano de Lançamento" formControlName="anoLancamento" [disabled]="edicao"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Álbum" placeholder="Álbum" formControlName="album" [disabled]="true"></ion-input>
+    </ion-item>
+      <ion-item>
+        <ion-select aria-label="Genero" interface="popover" placeholder="Gênero" formControlName="genero" [disabled]="true">
+          <ion-select-option value="Sertanejo">Sertanejo</ion-select-option>
+          <ion-select-option value="Pop-Rock">Pop-Rock</ion-select-option>
+          <ion-select-option value="Hip-hop">Hip-hop</ion-select-option>
+          <ion-select-option value="Pagode">Pagode</ion-select-option>
+          <ion-select-option value="Funk">Funk</ion-select-option>
+          <ion-select-option value="Dance/eletrônica">Dance/eletrônica</ion-select-option>
+          <ion-select-option value="Rock">Rock</ion-select-option>
+          <ion-select-option value="Jazz">Jazz</ion-select-option>
+          <ion-select-option value="Blues">Blues</ion-select-option>
+          <ion-select-option value="Country">Country</ion-select-option>
+          <ion-select-option value="Pop">Pop</ion-select-option>
+          <ion-select-option value="Clássica">Clássica</ion-select-option>
+          <ion-select-option value="Reggae">Reggae</ion-select-option>
+          <ion-select-option value="Bossa Nova">Bossa Nova</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="musica.downloadURL != null" class="custom-image">
+        <div class="center-container">
+          <img src="{{musica.downloadURL}}" class="custom-image" style="width: 100px; height: 100px;" />
+        </div>
+      </ion-item>
+      
+      
+      <ion-button size="default" color="#ffffff;" shape="round" [class.custom-file-button]="musica.downloadURL != null" [class.custom-file-button-semImagem]="musica.downloadURL == null" disabled="{{edicao}}">
+        <input type="file" (change)="uploadFile($event.target)" class="custom-file-input"/>
+        Escolher arquivo
+      </ion-button>
+
+      <span class="error-message" *ngIf="formEditar.get('nome')?.touched && formEditar.get('nome')?.errors?.['required']">Nome é Obrigatório</span> 
+      <span class="error-message" *ngIf="formEditar.get('banda')?.touched && formEditar.get('banda')?.errors?.['required']">Banda é Obrigatória</span> 
+      <span class="error-message" *ngIf="(formEditar.get('anoLancamento')?.touched && formEditar.get('anoLancamento')?.errors?.['required']) || (formEditar.get('anoLancamento')?.dirty && formEditar.get('anoLancamento')?.errors?.['max'])">
+        {{ formEditar.get('anoLancamento')?.errors?.['required'] ? 'Ano de Lançamento é Obrigatório' : 'Ano de Lançamento precisa ser até o ano 2024' }}
+      </span> 
+      <span class="error-message" *ngIf="formEditar.get('album')?.touched && formEditar.get('album')?.errors?.['required']">Álbum é Obrigatório</span> 
+      <span class="error-message" *ngIf="formEditar.get('genero')?.touched && formEditar.get('genero')?.errors?.['required']">Gênero é Obrigatório</span> 
+  </form>
 
     <ion-button expand="block" (click)="editar()" disabled="{{edicao}}" [class.button-com-imagem]="musica.downloadURL != null" [class.button-sem-imagem]="musica.downloadURL == null">Salvar</ion-button>
     <ion-button expand="block" (click)="excluir()" disabled="{{edicao}}" color="danger" style="--margin-top: 45px;">Excluir</ion-button>

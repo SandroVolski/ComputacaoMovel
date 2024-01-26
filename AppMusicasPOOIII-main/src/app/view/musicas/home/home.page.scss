@@ -56,17 +56,17 @@ ion-item {
 }
 
 .custom-content {
-  --background: transparent; /* Torna o plano de fundo transparente */
+  --background: transparent;
   position: absolute;
   top: 40px;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1; /* Certifique-se de que está por trás do conteúdo do ion-content */
+  z-index: 1; 
 }
 
 ion-header {
-  z-index: 1; /* Certifique-se de que está à frente do conteúdo do ion-content */
+  z-index: 1; 
 }
 
 .item-musica {
@@ -75,7 +75,7 @@ ion-header {
     font-size: 17px;
     margin: 0;
     text-transform: uppercase; // Transforma o texto em letras maiúsculas
-    font-weight: bold; // Negrito
+    font-weight: bold; 
   }
 
   p {
@@ -106,7 +106,7 @@ ion-fab-button {
   --border-radius: 30px;
   text-align: center;
   font-size: 1rem;
-  min-width: 125px;  // Ajuste este valor conforme necessário
+  min-width: 125px;  
   display: flex;
   align-items: center;     // alinha verticalmente o ícone e o texto
   justify-content: center; // alinha horizontalmente o ícone e o texto
@@ -121,16 +121,16 @@ div.item-native {
 }
 
 .max-height-list {
-  max-height: calc(100vh - 150px); /* Defina o valor que se adapte ao seu layout */
-  overflow-y: auto; /* Adicione a barra de rolagem se necessário */
+  max-height: calc(100vh - 150px); 
+  overflow-y: auto; 
 }
 
 .imagem-musica {
-  width: 50px; /* Defina a largura desejada para a imagem */
-  height: 50px; /* Defina a altura desejada para a imagem */
-  object-fit: cover; /* Cobrir totalmente o contêiner mantendo a proporção */
-  object-position: center; /* Manter o centro da imagem */
-  border-radius: 0; /* Remove as bordas arredondadas */
+  width: 50px; 
+  height: 50px; 
+  object-fit: cover;
+  object-position: center; 
+  border-radius: 0; 
 }
 
 .scrolling-container {
@@ -140,7 +140,7 @@ div.item-native {
 .scrolling-content {
   white-space: nowrap;
   animation: scrollText 12s linear infinite;
-  animation-delay: 3s; /* Adiciona um atraso de 2 segundos antes de começar a rolar */
+  animation-delay: 3s; 
 }
 
 @keyframes scrollText {
@@ -181,21 +181,21 @@ div.item-native {
  }
 
  .audio-player {
-  margin-top: 10px; /* Ajuste a margem superior conforme necessário */
-  display: block; /* Isso garante que o elemento seja exibido como bloco, ocupando toda a largura disponível */
-  margin-left: auto; /* Isso centraliza o elemento horizontalmente */
+  margin-top: 10px; 
+  display: block; 
+  margin-left: auto; 
   margin-right: auto;
 }
 
 .logout {
-  font-size: 14px; /* Ajuste o tamanho do texto do botão conforme necessário */
-  --background: #000000; /* Define a cor de fundo do botão como preto */
-  --color: #ffffff; /* Define a cor do texto do botão como branco */
+  font-size: 14px; 
+  --background: #000000; 
+  --color: #ffffff;
 }
 
 .logout:active {
-  --background: #ffffff; /* Define a cor de fundo do botão como branco ao ser clicado */
-  --color: #000000; /* Define a cor do texto do botão como preto ao ser clicado */
+  --background: #ffffff; 
+  --color: #000000; 
 }
  
  /* styles.css ou styles.scss */

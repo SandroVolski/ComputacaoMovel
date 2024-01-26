@@ -8,21 +8,27 @@
 </ion-header>
 
 <ion-content class="custom-content">
+
+  <form [formGroup]="formCadastrar" (ngSubmit)="submitForm()">
     <ion-item>
-      <ion-input label="Nome" placeholder="Nome" [(ngModel)]="nome"></ion-input>
+      <ion-input label="Nome" placeholder="Nome" formControlName="nome"></ion-input>
     </ion-item>
+
     <ion-item>
-      <ion-input label="Banda" placeholder="Banda/Cantor" [(ngModel)]="banda"></ion-input>
+      <ion-input label="Banda" placeholder="Banda/Cantor" formControlName="banda"></ion-input>
     </ion-item>
+    
     <ion-item>
-      <ion-input label="Ano de Lançamento" placeholder="Ano de Lançamento" type="number" [(ngModel)]="anoLancamento"></ion-input>
+      <ion-input label="Ano de Lançamento" placeholder="Ano de Lançamento" type="number" formControlName="anoLancamento"></ion-input>
     </ion-item>
+    
     <ion-item>
       <!--<ion-datetime presentation="month-year"></ion-datetime>-->
-      <ion-input label="Álbum" placeholder="Álbum" [(ngModel)]="album"></ion-input>
+      <ion-input label="Álbum" placeholder="Álbum" formControlName="album"></ion-input>
     </ion-item>
+    
       <ion-item>
-        <ion-select aria-label="Genero" interface="popover" placeholder="Gênero" [(ngModel)]="genero">
+        <ion-select aria-label="Genero" interface="popover" placeholder="Gênero" formControlName="genero">
           <ion-select-option value="Sertanejo">Sertanejo</ion-select-option>
           <ion-select-option value="Pop-Rock">Pop-Rock</ion-select-option>
           <ion-select-option value="Hip-hop">Hip-hop</ion-select-option>
@@ -40,6 +46,7 @@
         </ion-select>
       </ion-item>
 
+
       <ion-button size="default" color="#ffffff;" shape="round" class="custom-file-button">
         <input type="file" (change)="uploadFile($event.target)" class="custom-file-input"/>
         Escolher Imagem
@@ -50,5 +57,22 @@
           Escolher Áudio
       </ion-button>
 
-    <ion-button expand="block" (click)="cadastrar()" style="margin-top: 100px;">Cadastrar</ion-button>
+      <span class="error-message-primeiro" *ngIf="formCadastrar.get('nome')?.touched && formCadastrar.get('nome')?.errors?.['required']">Nome é Obrigatório</span> 
+      <span class="error-message" *ngIf="formCadastrar.get('banda')?.touched && formCadastrar.get('banda')?.errors?.['required']">Banda é Obrigatória</span> 
+      <span class="error-message" *ngIf="(formCadastrar.get('anoLancamento')?.touched && 
+        (formCadastrar.get('anoLancamento')?.errors?.['required'] || 
+        formCadastrar.get('anoLancamento')?.errors?.['max'] ||
+        formCadastrar.get('anoLancamento')?.errors?.['min']))">
+
+        {{ formCadastrar.get('anoLancamento')?.errors?.['required'] ? 'Ano de Lançamento é Obrigatório' :
+          formCadastrar.get('anoLancamento')?.errors?.['max'] ? 'Ano de Lançamento precisa ser até o ano 2024' :
+          formCadastrar.get('anoLancamento')?.errors?.['min'] ? 'Ano de Lançamento precisa ser superior a 1499' : ''
+        }}
+
+      </span>
+      <span class="error-message" *ngIf="formCadastrar.get('album')?.touched && formCadastrar.get('album')?.errors?.['required']">Álbum é Obrigatório</span> 
+      <span class="error-message" *ngIf="formCadastrar.get('genero')?.touched && formCadastrar.get('genero')?.errors?.['required']">Gênero é Obrigatório</span> 
+
+    <ion-button expand="block" (click)="cadastrar()" style="margin-top: 15px;">Cadastrar</ion-button>
+  </form>
 </ion-content>

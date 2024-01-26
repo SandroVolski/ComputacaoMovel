@@ -6,6 +6,7 @@ import { FirebaseService } from 'src/app/model/service/firebase.service';
 import { MusicaService } from 'src/app/model/service/musica.service';
 import { AuthService } from 'src/app/model/service/auth.service';
 import { AlertService } from 'src/app/common/alert.service';
+import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastrar',
@@ -21,16 +22,35 @@ export class CadastrarPage implements OnInit {
   public imagem : any;
   public som : any;
   public user: any;
+  formCadastrar : FormGroup;
 
   constructor(private alert : AlertService, private alertController: AlertController,
     private router : Router,
     private firebase: FirebaseService,
-    private auth: AuthService)  { 
+    private auth: AuthService, private formBuilder : FormBuilder)  { 
       this.user = this.auth.getUserLogged();
+      this.formCadastrar = new FormGroup({
+        nome : new FormControl(''),
+        banda : new FormControl(''),
+        anoLancamento : new FormControl(''),
+        album : new FormControl(''),
+        genero : new FormControl(''),
+      });
     }
 
   ngOnInit() {
+    this.formCadastrar = this.formBuilder.group({
+      nome : ['', [Validators.required]],
+      banda : ['', [Validators.required]],
+      anoLancamento : ['', [Validators.required, Validators.max(2024), Validators.min(1500)]],
+      album : ['', [Validators.required]],
+      genero : ['', [Validators.required]],
+    });
   } 
+
+  get errorControl(){
+    return this.formCadastrar.controls;
+  }
 
   public uploadFile(imagem : any) {
     this.imagem = imagem.files;
@@ -38,6 +58,17 @@ export class CadastrarPage implements OnInit {
 
   public uploadSound(som : any) {
     this.som = som.files;
+  }
+
+  submitForm() : boolean{
+    if (!this.formCadastrar.valid) {
+      this.alert.presentAlert('Erro', 'Erro ao Preencher!');
+      return false;
+    } else {
+      this.alert.simpleLoader();
+      this.cadastrar();
+      return true;
+    }
   }
 
   cadastrar(){
