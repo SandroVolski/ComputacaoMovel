@@ -78,8 +78,9 @@ export class AtualizarPage implements OnInit {
   }
 
   editar(){
-    if (this.nome && this.banda && this.anoLancamento && this.album && this.genero) {
-      let novo: Musica = new Musica(this.nome, this.banda, this.anoLancamento, this.genero, this.album);
+    const { nome, banda, anoLancamento, genero, album } = this.formEditar.value;
+    if(nome && banda && anoLancamento && genero && album){
+      let novo: Musica = new Musica(nome, banda, anoLancamento, genero, album);
       novo.id = this.musica.id;
       novo.uid = this.user.uid;
       if(this.imagem){

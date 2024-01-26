@@ -72,8 +72,9 @@ export class CadastrarPage implements OnInit {
   }
 
   cadastrar(){
-    if(this.nome && this.banda && this.anoLancamento && this.genero && this.album){
-      let novo : Musica = new Musica(this.nome, this.banda, this.anoLancamento, this.genero, this.album);
+    const { nome, banda, anoLancamento, genero, album } = this.formCadastrar.value;
+    if(nome && banda && anoLancamento && genero && album){
+      let novo : Musica = new Musica(nome, banda, anoLancamento, genero, album);
       novo.uid = this.user.uid;
       this.alert.dismissLoader();
       if (this.imagem && this.som) {
