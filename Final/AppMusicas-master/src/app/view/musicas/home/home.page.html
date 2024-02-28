@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar >
+    <!--
+    <ion-avatar slot="start">
+      <ion-img src="assets/icon/HarmoniApp.png" style="width: 70px; height: 50px;"></ion-img>
+    </ion-avatar>
+    -->
+
+    <ion-button (click)="logout()" class="logout">
+      <ion-icon name="exit-outline"></ion-icon>
+    </ion-button>
+
+    <ion-title>
+      <ion-icon name="musical-note-outline"></ion-icon> PLAYLIST <ion-icon name="musical-note-outline"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="custom-content">
+  <app-search-bar (searchChange)="filtrarMusicas($event)"></app-search-bar>
+  <app-loading-music *ngIf="isLoading"></app-loading-music>
+  <ion-list *ngIf="!isLoading" style="background: transparent; max-height: 480px; overflow-y: auto;" >
+    <app-music *ngFor="let musica of lista_musicas; let i = index"
+           [musica]="musica"
+           [index]="i"
+           [isPlaying]="isPlaying"
+           [currentMusica]="currentMusica"
+           (edit)="editar($event)"
+           (play)="reproduzirAudio($event)"
+           (toggle)="togglePlay($event)">
+    </app-music>
+  </ion-list>
+  <app-empty-screen *ngIf="lista_musicas.length == 0 && !isLoading"></app-empty-screen>
+
+  <ion-fab horizontal="center" vertical="bottom">
+    <ion-fab-button horizontal="center" vertical="bottom" (click)="irParaCadastrar()" class="meu-botao" color="secondary">
+      ADICIONAR
+    </ion-fab-button>
+ </ion-fab>
+</ion-content>

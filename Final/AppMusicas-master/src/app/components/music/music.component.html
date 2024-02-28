@@ -1,0 +1,13 @@
+<ion-item class="item-musica" lines="none">
+  <div class="item-count" style="margin-right: 15px; font-size: 15px; font-weight: bold; color: #ffffff;">{{ index + 1 }}</div>
+  <img *ngIf="musica.downloadURL != null" src="{{ musica.downloadURL }}" class="imagem-musica" style="margin-right: 15px;" (click)="reproduzirAudio()" />
+  <img src="assets/Play2.png" class="play-icon" [ngClass]="{ 'hidden': !isPlaying || currentMusica !== musica }" (click)="togglePlay()" />
+  <img *ngIf="musica.downloadURL == null" src="assets/avatar2.png" class="imagem-musica" style="margin-right: 15px;" (click)="reproduzirAudio()" />
+  <img src="assets/Play2.png" class="play-icon" [ngClass]="{ 'hidden': !isPlaying || currentMusica !== musica }" (click)="togglePlay()" />
+  <div class="scrolling-container" (click)="editar()">
+    <div [ngClass]="{ 'scrolling-content': musica.nome.length > 23 || musica.banda.length > 39 }">
+      <h2>{{ musica.nome }}</h2>
+      <p>{{ musica.banda }}</p>
+    </div>
+  </div>
+</ion-item>
