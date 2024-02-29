@@ -1,0 +1,29 @@
+div{
+    height: 30vh;
+    margin-top: 10px;
+    width: 94%;
+    swiper-container{
+        --swiper-pagination-color: var(--ion-color-primary);
+        swiper-slide{
+            height: 27vh;
+            img{
+                width: 100%;
+                height: 22vh;
+                border-radius: 5px;
+                box-shadow: -1px 11px 13px -6px rgb(87, 86, 86);
+            }
+        }
+    }
+}
+
+ion-label{
+    font-weight: bold;
+    font-size: 0.9rem;
+    h4{
+        font-weight: bold !important;
+        font-size: 1.2rem;
+    }
+    p{
+        font-size: 1rem;
+    }
+}
